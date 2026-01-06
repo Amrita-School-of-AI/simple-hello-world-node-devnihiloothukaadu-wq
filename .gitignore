@@ -1,0 +1,5 @@
+build/
+install/
+log/
+.CMakeCache.txt
+CMakeCache.txt
