@@ -1,26 +1,28 @@
 cmake_minimum_required(VERSION 3.8)
 project(ros2_hello_world)
 
+# Enable warnings for GCC/Clang
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# Find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
-# Add executable
+# Create executable
 add_executable(hello_node src/hello_node.cpp)
 
-# Link dependencies
+# Link rclcpp
 ament_target_dependencies(hello_node rclcpp)
 
-# Install executable
+# Install executable (REQUIRED for ros2 run)
 install(TARGETS
   hello_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
+# Testing (standard template)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
